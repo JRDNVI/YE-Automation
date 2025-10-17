@@ -22,12 +22,12 @@ Public Function GetLatestFile(ByVal folder As String, _
 
     targetFile = Format(targetDate, "dd.mm.yyyy") & ".xlsx"
     If Len(Dir(folder & targetFile)) > 0 Then
-        logger.Info "     ✅ Exact match found: " & folder & targetFile
+        logger.Info "Exact match found: " & folder & targetFile
         GetLatestFile = targetFile
         Exit Function
     End If
 
-    logger.Info "     Searching for latest available file..."
+    logger.Info "Searching for latest available file..."
     fileName = Dir(folder & "*.xls*")
 
     Do While fileName <> ""
@@ -50,9 +50,9 @@ Public Function GetLatestFile(ByVal folder As String, _
     Loop
 
     If latestFile <> "" Then
-        logger.Info "     Using latest available file: " & folder & latestFile
+        logger.Info "Using latest available file: " & folder & latestFile
     Else
-        logger.Warn "     ⚠️ No valid date-formatted files found."
+        logger.Warn "No valid date-formatted files found."
     End If
 
     GetLatestFile = latestFile

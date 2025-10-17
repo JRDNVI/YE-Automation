@@ -29,7 +29,7 @@ Public Sub RunImport()
     ' === Start session ===
     logger.StartSession configHelper.GetPath("log_folder")
     logger.Info "=== Supervisor Import Started ==="
-    logger.Info "Using static configuration values (no JSON file)."
+    logger.Info "Using static configuration values"
 
     ' === Load config ===
     Dim year As Long: year = configHelper.GetYear
@@ -53,7 +53,7 @@ Public Sub RunImport()
 
             fileName = fileHelper.GetLatestFile(folder, targetDate, logger)
             If fileName <> "" Then
-                xlHelper.ReadSupervisorData folder & fileName, lineName, shift, masterPath, colMap, logger
+                xlHelper.ReadSupervisorData folder & fileName, lineName, shift, masterPath, colMap, logger, targetDate
             Else
                 logger.Warn "     ⚠ No valid Excel file found for " & lineName
             End If

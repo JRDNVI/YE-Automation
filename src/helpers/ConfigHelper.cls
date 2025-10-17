@@ -7,19 +7,19 @@ Option Explicit
 
 ' ===========================================
 ' HELPER: ConfigHelper
-' Centralised configuration (no JSON required)
+' Centralised configuration
 ' ===========================================
 
-' Paths
+' 
 Private Const BASE_PATH As String = "D:\project\OakPark-Data-YE\"
-Private Const MASTER_FILE As String = BASE_PATH & "Master-Data\Master-YE.xlsx"
+Private Const MASTER_FILE As String = BASE_PATH & "Master-Data\Yields and Efficiencies 2025 - Cahir.xlsb"
 Private Const SUPERVISOR_ROOT As String = BASE_PATH & "supervisor\"
 Private Const LOG_FOLDER As String = BASE_PATH & "Logs\"
 
-' Other configuration
+' 
 Private Const YEAR_VALUE As Long = 2025
-Private Const MONTH_VALUE As String = "May"
-Private Const TARGET_DATE As String = "02.05.2025" ' dd.mm.yyyy
+Private Const MONTH_VALUE As String = "October"
+Private Const TARGET_DATE As String = "01.10.2025" 
 
 Private Shifts As Variant
 Private Lines As Variant
