@@ -55,22 +55,29 @@ Public Sub ReadSupervisorData(ByVal filePath As String, _
 
     ' === Read data ===
     Set dataList = New Collection
-    i = 9
-    Do While Trim(ws.Range("B" & i).Text) <> ""
+    i = 9  ' starting row for data
+
+    Do While Not IsEmpty(ws.Range("I" & i).Value) And ws.Range("I" & i).Value <> 0
         ReDim tempRow(LBound(colMap) To UBound(colMap))
         For c = LBound(colMap) To UBound(colMap)
-            tempRow(c) = ws.Range(colMap(c)(0) & i).Value  'read from supervisor column
+            tempRow(c) = ws.Range(colMap(c)(0) & i).Value  ' read from supervisor column
         Next c
         dataList.Add tempRow
         i = i + 1
-        If i > 2000 Then Exit Do    
+        If i > 2000 Then Exit Do  ' safety stop
     Loop
+
     wb.Close False
+
 
     logger.Info dataList.Count & " rows collected."
 
     ' === Write to Master ===
     WriteToMaster dataList, lineName, shiftName, colMap, masterPath, logger, targetDate, supervisor
+End Sub
+
+private sub ReadProductionAndMaintenanceDowntime()
+    
 End Sub
 
 Private Sub WriteToMaster(ByVal dataList As Collection, _

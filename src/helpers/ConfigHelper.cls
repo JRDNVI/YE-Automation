@@ -25,6 +25,8 @@ Private Shifts As Variant
 Private Lines As Variant
 Private Columns As Variant
 Private Line4_Columns As Variant
+private production_downtime_columns As Variant
+private maintenance_downtime_columns As Variant
 
 Private Sub Class_Initialize()
     Shifts = Array("day shift", "night shift")
@@ -47,6 +49,28 @@ Private Sub Class_Initialize()
 
     ' Column mappings for Line 4 (different layout)
     Line4_Columns = Array( _
+        Array("B", "C"), _
+        Array("Q", "T"), _
+        Array("I", "N"), _
+        Array("L", "Q"), _
+        Array("S", "M"), _
+        Array("T", "I"), _
+        Array("Y", "U"), _
+        Array("AA", "V") _
+    )
+
+    production_downtime_columns = Array( _
+        Array("B", "C"), _
+        Array("Q", "T"), _
+        Array("I", "N"), _
+        Array("L", "Q"), _
+        Array("S", "M"), _
+        Array("T", "I"), _
+        Array("Y", "U"), _
+        Array("AA", "V") _
+    )
+
+    maintenance_downtime_columns = Array( _
         Array("B", "C"), _
         Array("Q", "T"), _
         Array("I", "N"), _
@@ -86,3 +110,5 @@ Public Function GetShifts() As Variant: GetShifts = Shifts: End Function
 Public Function GetLines() As Variant: GetLines = Lines: End Function
 Public Function GetColumns() As Variant: GetColumns = Columns: End Function
 Public Function GetLine4_Columns() As Variant: GetLine4_Columns = Line4_Columns: End Function
+Public Function GetProductionDowntimeColumns() As Variant: GetProductionDowntimeColumns = production_downtime_columns: End Function
+Public Function GetMaintenanceDowntimeColumns() As Variant: GetMaintenanceDowntimeColumns = maintenance_downtime_columns: End Function
