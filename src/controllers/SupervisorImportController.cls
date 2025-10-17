@@ -53,6 +53,11 @@ Public Sub RunImport()
 
             fileName = fileHelper.GetLatestFile(folder, targetDate, logger)
             If fileName <> "" Then
+                If lineName = "Line 4" Then
+                    colMap = configHelper.GetLine4_Columns
+                Else
+                    colMap = configHelper.GetColumns
+                End If
                 xlHelper.ReadSupervisorData folder & fileName, lineName, shift, masterPath, colMap, logger, targetDate
             Else
                 logger.Warn "     ⚠ No valid Excel file found for " & lineName

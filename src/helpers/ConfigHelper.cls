@@ -24,12 +24,14 @@ Private Const TARGET_DATE As String = "01.10.2025"
 Private Shifts As Variant
 Private Lines As Variant
 Private Columns As Variant
+Private Line4_Columns As Variant
 
 Private Sub Class_Initialize()
     Shifts = Array("day shift", "night shift")
     Lines = Array("Line 1", "Line 2-3", "Line 4")
 
     ' Column mappings: {SupervisorCol, MasterCol}
+    ' This is for Lines 1, 2-3
     Columns = Array( _
         Array("B", "C"), _
         Array("I", "N"), _
@@ -41,6 +43,18 @@ Private Sub Class_Initialize()
         Array("X", "U"), _
         Array("Z", "V"), _
         Array("AB", "T") _
+    )
+
+    ' Column mappings for Line 4 (different layout)
+    Line4_Columns = Array( _
+        Array("B", "C"), _
+        Array("Q", "T"), _
+        Array("I", "N"), _
+        Array("L", "Q"), _
+        Array("S", "M"), _
+        Array("T", "I"), _
+        Array("Y", "U"), _
+        Array("AA", "V") _
     )
     
 End Sub
@@ -71,3 +85,4 @@ End Function
 Public Function GetShifts() As Variant: GetShifts = Shifts: End Function
 Public Function GetLines() As Variant: GetLines = Lines: End Function
 Public Function GetColumns() As Variant: GetColumns = Columns: End Function
+Public Function GetLine4_Columns() As Variant: GetLine4_Columns = Line4_Columns: End Function
