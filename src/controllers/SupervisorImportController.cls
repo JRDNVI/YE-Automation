@@ -37,9 +37,12 @@ Public Sub RunImport()
     Dim targetDate As Date: targetDate = configHelper.GetTargetDate
     Dim masterPath As String: masterPath = configHelper.GetPath("master_file")
     Dim rootPath As String: rootPath = configHelper.GetPath("supervisor_root")
+    Dim downtimePath As String: downtimePath = configHelper.GetPath("master_downtime_file")
     Dim shifts As Variant: shifts = configHelper.GetShifts
     Dim lines As Variant: lines = configHelper.GetLines
     Dim colMap As Variant: colMap = configHelper.GetColumns
+    Dim prodCol As Variant: prodCol = configHelper.GetProductionDowntimeColumns
+    Dim maintCol As Variant: maintCol = configHelper.GetMaintenanceDowntimeColumns
 
     Dim shift As Variant, lineName As Variant
     Dim folder As String, fileName As String
@@ -55,18 +58,19 @@ Public Sub RunImport()
             If fileName <> "" Then
                 If lineName = "Line 4" Then
                     colMap = configHelper.GetLine4_Columns
+                    prodCol = configHelper.GetProductionDowntimeColumns4
                 Else
                     colMap = configHelper.GetColumns
                 End If
-                xlHelper.ReadSupervisorData folder & fileName, lineName, shift, masterPath, colMap, logger, targetDate
+                'xlHelper.ReadSupervisorData folder & fileName, lineName, shift, masterPath, colMap, logger, targetDate
+                xlHelper.ReadProductionDowntime folder & fileName, lineName, shift, downtimePath, prodCol, logger, targetDate
             Else
-                logger.Warn "     ⚠ No valid Excel file found for " & lineName
+                logger.Warn " No valid Excel file found for " & lineName
             End If
         Next lineName
     Next shift
 
-    ' === Wrap up ===
-    logger.Info "✅ Import complete."
+    logger.Info "Import complete."
     logger.Save
     MsgBox "Supervisor import complete." & vbCrLf & _
            "Log saved to: " & vbCrLf & logger.SessionPath, vbInformation, "Supervisor Import"

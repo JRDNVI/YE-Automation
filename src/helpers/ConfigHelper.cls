@@ -13,6 +13,7 @@ Option Explicit
 ' 
 Private Const BASE_PATH As String = "D:\project\OakPark-Data-YE\"
 Private Const MASTER_FILE As String = BASE_PATH & "Master-Data\Yields and Efficiencies 2025 - Cahir.xlsb"
+private Const MASTER_DOWNTIME_FILE As String = BASE_PATH & "Master-Data\Downtime Master 2025.xlsx"
 Private Const SUPERVISOR_ROOT As String = BASE_PATH & "supervisor\"
 Private Const LOG_FOLDER As String = BASE_PATH & "Logs\"
 
@@ -27,6 +28,7 @@ Private Columns As Variant
 Private Line4_Columns As Variant
 private production_downtime_columns As Variant
 private maintenance_downtime_columns As Variant
+private production_downtime_columns_4 As Variant
 
 Private Sub Class_Initialize()
     Shifts = Array("day shift", "night shift")
@@ -60,14 +62,31 @@ Private Sub Class_Initialize()
     )
 
     production_downtime_columns = Array( _
-        Array("B", "C"), _
-        Array("Q", "T"), _
-        Array("I", "N"), _
-        Array("L", "Q"), _
-        Array("S", "M"), _
-        Array("T", "I"), _
-        Array("Y", "U"), _
-        Array("AA", "V") _
+        Array("B", "D"), _
+        Array("C", "E"), _
+        Array("H", "F"), _
+        Array("K", "G"), _
+        Array("M", "I"), _
+        Array("R", "K"), _
+        Array("T", "L"), _
+        Array("V", "M"), _
+        Array("I", "G"), _
+        Array("X", "N"), _
+        Array("Z", "P") _
+    )
+
+     production_downtime_columns_4 = Array( _
+        Array("B", "D"), _
+        Array("C", "E"), _
+        Array("H", "F"), _
+        Array("I", "G"), _
+        Array("K", "H"), _
+        Array("M", "I"), _
+        Array("O", "J"), _
+        Array("R", "K"), _
+        Array("V", "M"), _
+        Array("X", "N"), _
+        Array("Z", "P") _
     )
 
     maintenance_downtime_columns = Array( _
@@ -101,6 +120,7 @@ Public Function GetPath(ByVal key As String) As String
     Select Case LCase(key)
         Case "master_file": GetPath = MASTER_FILE
         Case "supervisor_root": GetPath = SUPERVISOR_ROOT
+        Case "master_downtime_file": GetPath = MASTER_DOWNTIME_FILE
         Case "log_folder": GetPath = LOG_FOLDER
         Case Else: GetPath = ""
     End Select
@@ -112,3 +132,4 @@ Public Function GetColumns() As Variant: GetColumns = Columns: End Function
 Public Function GetLine4_Columns() As Variant: GetLine4_Columns = Line4_Columns: End Function
 Public Function GetProductionDowntimeColumns() As Variant: GetProductionDowntimeColumns = production_downtime_columns: End Function
 Public Function GetMaintenanceDowntimeColumns() As Variant: GetMaintenanceDowntimeColumns = maintenance_downtime_columns: End Function
+public Function GetProductionDowntimeColumns4() As Variant: GetProductionDowntimeColumns4 = production_downtime_columns_4: End Function
