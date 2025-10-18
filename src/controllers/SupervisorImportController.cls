@@ -73,8 +73,6 @@ Public Sub RunImport()
 
     logger.Info "Import complete."
     logger.Save
-    MsgBox "Supervisor import complete." & vbCrLf & _
-           "Log saved to: " & vbCrLf & logger.SessionPath, vbInformation, "Supervisor Import"
     Exit Sub
 
 ERR_HANDLER:

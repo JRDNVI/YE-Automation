@@ -55,10 +55,10 @@ Private Sub Class_Initialize()
         Array("Q", "T"), _
         Array("I", "N"), _
         Array("L", "Q"), _
-        Array("S", "M"), _
-        Array("T", "I"), _
-        Array("Y", "U"), _
-        Array("AA", "V") _
+        Array("R", "M"), _
+        Array("S", "I"), _
+        Array("X", "U"), _
+        Array("Z", "V") _
     )
 
     production_downtime_columns = Array( _
