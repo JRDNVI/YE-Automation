@@ -90,14 +90,10 @@ Private Sub Class_Initialize()
     )
 
     maintenance_downtime_columns = Array( _
-        Array("B", "C"), _
-        Array("Q", "T"), _
-        Array("I", "N"), _
-        Array("L", "Q"), _
-        Array("S", "M"), _
-        Array("T", "I"), _
-        Array("Y", "U"), _
-        Array("AA", "V") _
+        Array("C", "E"), _
+        Array("I", "O"), _
+        Array("M", "F"), _
+        Array("O", "P") _
     )
     
 End Sub

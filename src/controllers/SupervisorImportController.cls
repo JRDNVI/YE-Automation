@@ -62,8 +62,9 @@ Public Sub RunImport()
                 Else
                     colMap = configHelper.GetColumns
                 End If
-                'xlHelper.ReadSupervisorData folder & fileName, lineName, shift, masterPath, colMap, logger, targetDate
+                xlHelper.ReadSupervisorData folder & fileName, lineName, shift, masterPath, colMap, logger, targetDate
                 xlHelper.ReadProductionDowntime folder & fileName, lineName, shift, downtimePath, prodCol, logger, targetDate
+                xlHelper.ReadBreakdownDowntime folder & fileName, lineName, shift, downtimePath, maintCol, logger, targetDate
             Else
                 logger.Warn " No valid Excel file found for " & lineName
             End If

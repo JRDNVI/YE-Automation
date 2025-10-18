@@ -162,6 +162,153 @@ Public Sub ReadProductionDowntime(ByVal filePath As String, _
     WriteProductionDowntimeToMaster dataList, lineName, shiftName, colMap, downtimePath, logger, targetDate
 End Sub
 
+Public Sub ReadBreakdownDowntime(ByVal filePath As String, _
+                                 ByVal lineName As String, _
+                                 ByVal shiftName As String, _
+                                 ByVal downtimePath As String, _
+                                 ByVal colMap As Variant, _
+                                 ByRef logger As LogHelper, _
+                                 ByVal targetDate As Date)
+
+    Dim wb As Workbook, ws As Worksheet
+    Dim i As Long, c As Long
+    Dim dataList As Collection
+    Dim tempRow() As Variant
+    Dim foundCount As Long, startRow As Long
+    Dim val As Variant
+    Dim cell As Range
+
+    logger.Info "Opening for Breakdown Downtime: " & filePath
+
+    ' === Open file safely ===
+    On Error Resume Next
+    Set wb = Workbooks.Open(CStr(filePath), ReadOnly:=True)
+    On Error GoTo 0
+
+    If wb Is Nothing Then
+        logger.Error "❌ Could not open workbook."
+        Exit Sub
+    End If
+
+    On Error Resume Next
+    Set ws = wb.Sheets("Yields and Efficiency")
+    On Error GoTo 0
+
+    If ws Is Nothing Then
+        logger.Warn "⚠ Missing 'Yields and Efficiency' sheet."
+        wb.Close False
+        Exit Sub
+    End If
+
+    ' === Find THIRD "Product" occurrence (start of downtime) ===
+    foundCount = 0
+    Dim lastScanRow As Long
+    lastScanRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).Row
+
+    For Each cell In ws.Range("C1:C" & lastScanRow)
+        If LCase(Trim(CStr(cell.Value))) = "product" Then
+            foundCount = foundCount + 1
+            If foundCount = 3 Then
+                startRow = cell.Row + 1
+                Exit For
+            End If
+        End If
+    Next cell
+
+    If startRow = 0 Then
+        logger.Warn "⚠ Could not find third 'Product' header – skipping downtime."
+        wb.Close False
+        Exit Sub
+    End If
+
+    logger.Info "Found Breakdown Downtime start at row " & startRow
+
+    ' === Collect rows ===
+    Set dataList = New Collection
+    i = startRow
+
+    Do While True
+    
+        val = ws.Range("M" & i).Value
+
+        If IsError(val) Then Exit Do
+        If IsEmpty(val) Then Exit Do
+        If LCase(Trim(CStr(ws.Range("C" & i).Value))) = "total" Then Exit Do
+   
+        ReDim tempRow(LBound(colMap) To UBound(colMap))
+        For c = LBound(colMap) To UBound(colMap)
+            tempRow(c) = ws.Range(colMap(c)(0) & i).Value
+        Next c
+        dataList.Add tempRow
+
+        i = i + 1
+        If i > 2000 Then Exit Do
+    Loop
+
+    wb.Close False
+
+    logger.Info "✅ Total Breakdown downtime rows collected: " & dataList.Count
+
+   
+    WriteBreakdownDowntimeToMaster dataList, lineName, shiftName, colMap, downtimePath, logger, targetDate
+End Sub
+
+Private Sub WriteBreakdownDowntimeToMaster(ByVal dataList As Collection, _
+                                            ByVal lineName As String, _
+                                            ByVal shiftName As String, _
+                                            ByVal colMap As Variant, _
+                                            ByVal downtimePath As String, _
+                                            ByRef logger As LogHelper, _
+                                            ByVal targetDate As Date)
+
+    Dim wb As Workbook, ws As Worksheet
+    Dim nextRow As Long, dataRow As Variant, c As Long
+    Dim count As Long
+
+    logger.Info "Writing Maintenance downtime to master file..."
+
+    ' === Open master workbook ===
+    On Error Resume Next
+    Set wb = Workbooks.Open(downtimePath)
+    On Error GoTo 0
+
+    If wb Is Nothing Then
+        logger.Error "❌ Could not open Master workbook for downtime write."
+        Exit Sub
+    End If
+
+    ' === Locate or create target sheet ===
+    On Error Resume Next
+    Set ws = wb.Sheets("Sheet1")
+    On Error GoTo 0
+
+    ' === Find the next available row ===
+    nextRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row + 1
+
+    ' === Write data ===
+    For Each dataRow In dataList
+        With ws
+            .Range("A" & nextRow).Value = targetDate
+            .Range("B" & nextRow).Value = lineName
+            .Range("C" & nextRow).Value = shiftName
+            .Range("O" & nextRow).Value = "Maintenance"  
+
+            For c = LBound(colMap) To UBound(colMap)
+                .Range(colMap(c)(1) & nextRow).Value = dataRow(c)
+            Next c
+        End With
+
+        nextRow = nextRow + 1
+        count = count + 1
+    Next dataRow
+
+    ' === Save & Close ===
+    wb.Close SaveChanges:=True
+    logger.Info "✅ " & count & " production downtime rows written to Master file."
+End Sub
+
+
+
 Private Sub WriteProductionDowntimeToMaster(ByVal dataList As Collection, _
                                             ByVal lineName As String, _
                                             ByVal shiftName As String, _
