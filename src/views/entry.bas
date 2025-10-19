@@ -1,6 +1,9 @@
 Option Explicit
 
 Public Sub ImportSupervisorSheets()
-    Dim controller As New SupervisorImportController
-    controller.RunImport
+    Dim SupervisorController As New SupervisorImportController
+   ' Dim CuringController As New CuringImportController
+
+    SupervisorController.RunImport
+   ' CuringController.RunImport
 End Sub

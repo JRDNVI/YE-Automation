@@ -7,6 +7,8 @@ Option Explicit
 
 ' ===========================================
 ' HELPER: ExcelHelper
+' This class contains methods to read data from
+' supervisor line workbooks and write to master workbooks.
 ' ===========================================
 
 Public Sub ReadSupervisorData(ByVal filePath As String, _
@@ -23,7 +25,7 @@ Public Sub ReadSupervisorData(ByVal filePath As String, _
     Dim dataList As Collection
     Dim preview As String
 
-    logger.Info "Opening: " & filePath
+    logger.Info " Opening: " & filePath
 
     Application.DisplayAlerts = False
     Application.AskToUpdateLinks = False
@@ -34,7 +36,7 @@ Public Sub ReadSupervisorData(ByVal filePath As String, _
     Application.AskToUpdateLinks = True
 
     If wb Is Nothing Then
-        logger.[Error] "Could not open file."
+        logger.[Error] " Could not open file."
         Exit Sub
     End If
 
@@ -44,16 +46,15 @@ Public Sub ReadSupervisorData(ByVal filePath As String, _
     On Error GoTo 0
 
     If ws Is Nothing Then
-        logger.Warn "Missing 'Yields and Efficiency' sheet."
+        logger.Warn " Missing 'Yields and Efficiency' sheet."
         wb.Close False
         Exit Sub
     End If
 
     Dim supervisor As String
     supervisor = Trim(ws.Range("J7").Text)
-    logger.Info "Supervisor: " & supervisor
+    logger.Info " Supervisor: " & supervisor
 
-    ' === Read data ===
     Set dataList = New Collection
     i = 9  ' starting row for data
 
@@ -92,14 +93,14 @@ Public Sub ReadProductionDowntime(ByVal filePath As String, _
     Dim lastRow As Long
     Dim cell As Range
 
-    logger.Info "Opening for Production Downtime: " & filePath
+    logger.Info " Opening for Production Downtime: " & filePath
 
     On Error Resume Next
     Set wb = Workbooks.Open(filePath, ReadOnly:=True)
     On Error GoTo 0
 
     If wb Is Nothing Then
-        logger.Error "❌ Could not open file for downtime extraction."
+        logger.Error " Could not open file for downtime extraction."
         Exit Sub
     End If
 
@@ -108,7 +109,7 @@ Public Sub ReadProductionDowntime(ByVal filePath As String, _
     On Error GoTo 0
 
     If ws Is Nothing Then
-        logger.Warn "⚠ Missing 'Yields and Efficiency' sheet."
+        logger.Warn " Missing 'Yields and Efficiency' sheet."
         wb.Close False
         Exit Sub
     End If
@@ -126,12 +127,12 @@ Public Sub ReadProductionDowntime(ByVal filePath As String, _
     Next cell
 
     If startRow = 0 Then
-        logger.Warn "⚠ Could not find second 'Product' header – skipping downtime import."
+        logger.Warn " Could not find second 'Product' header – skipping downtime import."
         wb.Close False
         Exit Sub
     End If
 
-    logger.Info "Found 'Production Downtime' starting at row " & startRow
+    logger.Info " Found 'Production Downtime' starting at row " & startRow
 
     ' === Read data from column B onwards until blank, 0, N/A, or Total ===
     Set dataList = New Collection
@@ -156,9 +157,9 @@ Public Sub ReadProductionDowntime(ByVal filePath As String, _
 
     wb.Close False
 
-    logger.Info dataList.Count & " downtime rows collected."
+    logger.Info dataList.Count & " Downtime rows collected."
 
-    ' === Write to Master workbook ===
+    'Write to Master workbook 
     WriteProductionDowntimeToMaster dataList, lineName, shiftName, colMap, downtimePath, logger, targetDate
 End Sub
 
@@ -180,13 +181,13 @@ Public Sub ReadBreakdownDowntime(ByVal filePath As String, _
 
     logger.Info "Opening for Breakdown Downtime: " & filePath
 
-    ' === Open file safely ===
+    'Open file safely 
     On Error Resume Next
     Set wb = Workbooks.Open(CStr(filePath), ReadOnly:=True)
     On Error GoTo 0
 
     If wb Is Nothing Then
-        logger.Error "❌ Could not open workbook."
+        logger.Error "Could not open workbook."
         Exit Sub
     End If
 
@@ -195,12 +196,12 @@ Public Sub ReadBreakdownDowntime(ByVal filePath As String, _
     On Error GoTo 0
 
     If ws Is Nothing Then
-        logger.Warn "⚠ Missing 'Yields and Efficiency' sheet."
+        logger.Warn "Missing 'Yields and Efficiency' sheet."
         wb.Close False
         Exit Sub
     End If
 
-    ' === Find THIRD "Product" occurrence (start of downtime) ===
+    ' Find THIRD "Product" occurrence (start of downtime) 
     foundCount = 0
     Dim lastScanRow As Long
     lastScanRow = ws.Cells(ws.Rows.Count, "C").End(xlUp).Row
@@ -216,14 +217,13 @@ Public Sub ReadBreakdownDowntime(ByVal filePath As String, _
     Next cell
 
     If startRow = 0 Then
-        logger.Warn "⚠ Could not find third 'Product' header – skipping downtime."
+        logger.Warn "Could not find third 'Product' header – skipping downtime."
         wb.Close False
         Exit Sub
     End If
 
     logger.Info "Found Breakdown Downtime start at row " & startRow
 
-    ' === Collect rows ===
     Set dataList = New Collection
     i = startRow
 
@@ -247,7 +247,7 @@ Public Sub ReadBreakdownDowntime(ByVal filePath As String, _
 
     wb.Close False
 
-    logger.Info "✅ Total Breakdown downtime rows collected: " & dataList.Count
+    logger.Info "Total Breakdown downtime rows collected: " & dataList.Count
 
    
     WriteBreakdownDowntimeToMaster dataList, lineName, shiftName, colMap, downtimePath, logger, targetDate
@@ -267,25 +267,23 @@ Private Sub WriteBreakdownDowntimeToMaster(ByVal dataList As Collection, _
 
     logger.Info "Writing Maintenance downtime to master file..."
 
-    ' === Open master workbook ===
     On Error Resume Next
     Set wb = Workbooks.Open(downtimePath)
     On Error GoTo 0
 
     If wb Is Nothing Then
-        logger.Error "❌ Could not open Master workbook for downtime write."
+        logger.Error "Could not open Master workbook for downtime write."
         Exit Sub
     End If
 
-    ' === Locate or create target sheet ===
+    'Locate or create target sheet
     On Error Resume Next
     Set ws = wb.Sheets("Sheet1")
     On Error GoTo 0
 
-    ' === Find the next available row ===
+    'Find the next available row 
     nextRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row + 1
 
-    ' === Write data ===
     For Each dataRow In dataList
         With ws
             .Range("A" & nextRow).Value = targetDate
@@ -302,9 +300,8 @@ Private Sub WriteBreakdownDowntimeToMaster(ByVal dataList As Collection, _
         count = count + 1
     Next dataRow
 
-    ' === Save & Close ===
     wb.Close SaveChanges:=True
-    logger.Info "✅ " & count & " production downtime rows written to Master file."
+    logger.Info count & " production downtime rows written to Master file."
 End Sub
 
 
@@ -329,19 +326,19 @@ Private Sub WriteProductionDowntimeToMaster(ByVal dataList As Collection, _
     On Error GoTo 0
 
     If wb Is Nothing Then
-        logger.Error "❌ Could not open Master workbook for downtime write."
+        logger.Error "Could not open Master workbook for downtime write."
         Exit Sub
     End If
 
-    ' === Locate or create target sheet ===
+    'Locate or create target sheet
     On Error Resume Next
     Set ws = wb.Sheets("Sheet1")
     On Error GoTo 0
 
-    ' === Find the next available row ===
+    'Find the next available row 
     nextRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row + 1
 
-    ' === Write data ===
+
     For Each dataRow In dataList
         With ws
             .Range("A" & nextRow).Value = targetDate
@@ -358,9 +355,8 @@ Private Sub WriteProductionDowntimeToMaster(ByVal dataList As Collection, _
         count = count + 1
     Next dataRow
 
-    ' === Save & Close ===
     wb.Close SaveChanges:=True
-    logger.Info "✅ " & count & " production downtime rows written to Master file."
+    logger.Info count & " production downtime rows written to Master file."
 End Sub
 
 
@@ -405,7 +401,7 @@ Private Sub WriteToMaster(ByVal dataList As Collection, _
             .Range("E" & nextRow).Value = shiftName
             .Range("R" & nextRow).Value = supervisor
             For c = LBound(colMap) To UBound(colMap)
-                .Range(colMap(c)(1) & nextRow).Value = dataRow(c) ' write to master column
+                .Range(colMap(c)(1) & nextRow).Value = dataRow(c) 
             Next c
         End With
         nextRow = nextRow + 1

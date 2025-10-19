@@ -7,20 +7,23 @@ Option Explicit
 
 ' ===========================================
 ' HELPER: ConfigHelper
-' Centralised configuration
+' Centralised configuration For Y&E Automation
+' Includes file paths, date settings, column mappings, etc.
+' If any changes are needed, they should be made here
 ' ===========================================
 
-' 
 Private Const BASE_PATH As String = "D:\project\OakPark-Data-YE\"
 Private Const MASTER_FILE As String = BASE_PATH & "Master-Data\Yields and Efficiencies 2025 - Cahir.xlsb"
 private Const MASTER_DOWNTIME_FILE As String = BASE_PATH & "Master-Data\Downtime Master 2025.xlsx"
 Private Const SUPERVISOR_ROOT As String = BASE_PATH & "supervisor\"
 Private Const LOG_FOLDER As String = BASE_PATH & "Logs\"
 
-' 
-Private Const YEAR_VALUE As Long = 2025
-Private Const MONTH_VALUE As String = "October"
-Private Const TARGET_DATE As String = "01.10.2025" 
+' This is the year and month for the import process
+Private Const YEAR_VALUE As Long = 2025 ' Year used in folder paths
+Private Const MONTH_VALUE As String = "October" ' Month name as used in folder paths
+Private Const TARGET_DATE As String = "01.10.2025"  ' File to target (dd.mm.yyyy)
+
+' E.G. 
 
 Private Shifts As Variant
 Private Lines As Variant
@@ -106,8 +109,6 @@ Public Function GetTargetDate() As Date
     parts = Split(TARGET_DATE, ".")
     If UBound(parts) = 2 Then
         GetTargetDate = DateSerial(CLng(parts(2)), CLng(parts(1)), CLng(parts(0)))
-    Else
-        GetTargetDate = Date
     End If
 End Function
 
