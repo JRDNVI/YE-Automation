@@ -55,7 +55,7 @@ Public Sub RunImport()
     For Each shift In shifts
         logger.Info "Processing shift: " & shift
         For Each lineName In lines
-            folder = rootPath & shift & "\" & lineName & "\" & month & "\" ' TODO: Add Year 
+            folder = rootPath & shift & "\" & lineName & "\" & year & "\" & month & "\" 
             logger.Info "Folder: " & folder
 
 

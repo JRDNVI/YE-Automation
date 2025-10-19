@@ -22,7 +22,7 @@ Private Const LOG_FOLDER As String = BASE_PATH & "Logs\"
 ' This is the year and month for the import process
 Private Const YEAR_VALUE As Long = 2025 ' Year used in folder paths
 Private Const MONTH_VALUE As String = "October" ' Month name as used in folder paths
-Private Const TARGET_DATE As String = "03.10.2025"  ' File to target (dd.mm.yyyy)
+Private Const TARGET_DATE As String = "08.10.2025"  ' File to target (dd.mm.yyyy)
 
 Private Shifts As Variant
 Private Lines As Variant
