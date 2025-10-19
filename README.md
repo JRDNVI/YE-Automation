@@ -5,7 +5,7 @@
 ---
 
 ## Overview
-The **Oakpark Yields & Efficiency Automation System** is a fully automated data ingestion and reporting framework designed to consolidate weekly supervisor production sheets into centralised Excel master workbooks.
+The **Oakpark Yields & Efficiency Automation System** is a fully automated data ingestion and reporting framework designed to consolidate daily supervisor production sheets into centralised Excel master workbooks.
 
 It minimises manual data entry, ensures data consistency, and produces automated KPI dashboards, logs, and variance reports for operational visibility.
 
@@ -20,10 +20,12 @@ The project is written entirely in **VBA (Visual Basic for Applications)** and d
 |------------|-------------|
 | **ConfigHelper.cls** | Centralised configuration: base paths, file names, date, line/shift lists, column mappings. Automatically initialised on class creation. |
 | **LogHelper.cls** | Handles all runtime logging, timestamps, and error tracing. Writes logs to `BASE_PATH\Logs\`. |
-| **ExcelHelper.cls** | Performs safe workbook reads/writes, manages staging buffers, and consolidates data into the master workbook. |
+| **ExcelHelper.cls** | Performs safe workbook reads/writes, manages staging buffers, and consolidates data into the master workbook. (Supervisor sheets) |
+| **CuringHelper.cls** | Performs the same as ExcelHelper but for curing data. |
 | **FileHelper.cls** | Handles directory traversal, file discovery, and archiving (e.g. finding the latest supervisor files). |
+| **MainImportController.cls** | Manages application flow by calling controllers sequentially and injecting dependencies requried by each controller. |
 | **SupervisorImportController.cls** | Coordinates the import of daily supervisor yield/efficiency, production, and maintenance data into the master file. |
-| **CuringImportController.cls** | Imports daily yield/efficiency Data. |
+| **CuringImportController.cls** | Imports daily yield/efficiency curing Data. |
 
 ---
 
@@ -32,24 +34,25 @@ The project is written entirely in **VBA (Visual Basic for Applications)** and d
 Each controller is **initialised with shared helper instances** for consistency and testability.
 
 ```vba
-' --- MainController.bas ---
-Sub RunPRISM()
+' --- MainController.cls ---
+Public Sub runYEImport()
+ 
     Dim cfg As New ConfigHelper
-    Dim log As New LogHelper
-    Dim xl As New ExcelHelper
-    Dim file As New FileHelper
+    Dim lg  As New LogHelper
+    Dim xl  As New ExcelHelper
+    Dim curingXl As New CuringHelper
+    Dim fh  As New FileHelper
+ 
+    Dim supervisorController As New SupervisorImportController
+    Dim curingController As New CuringImportController
 
-    Dim supCtrl As New SupervisorController
-    Dim downCtrl As New DowntimeController
+    supervisorController.Init cfg, lg, xl, fh
+    curingController.Init cfg, lg, curingXl, fh
 
-    supCtrl.Init cfg, log, xl, file
-    downCtrl.Init cfg, log, xl, file
+    supervisorController.RunImport
+    curingController.RunImport
 
-    supCtrl.Run
-    downCtrl.Run
-
-    log.Info "All data imports completed successfully."
-End Sub
+    Exit Sub
 ```
 
 This ensures:
@@ -84,18 +87,15 @@ D:\project\OakPark-Data-YE\
 │   └── ErrorReports\
 │
 ├── modules\
-│   ├── ConfigHelper.cls
-│   ├── LogHelper.cls
-│   ├── ExcelHelper.cls
-│   ├── FileHelper.cls
-│   ├── SupervisorController.cls
-│   ├── DowntimeController.cls
-│   └── MainController.bas
-│
-└── archive\
-    └── ProcessedSupervisorFiles\
-```
+    ├── ConfigHelper.cls
+    ├── LogHelper.cls
+    ├── ExcelHelper.cls
+    ├── FileHelper.cls
+    ├── SupervisorController.cls
+    ├── DowntimeController.cls
+    └── MainController.bas
 
+```
 ---
 
 ## Configuration
@@ -135,29 +135,8 @@ Private Const TARGET_DATE As String = "01.10.2025"
 
 All logs are automatically timestamped and stored in:
 ```
-D:\project\OakPark-Data-YE\Logs\YYYY-MM-DD_Log.txt
+Logs\YYYY-MM-DD_Log.txt
 ```
-
----
-
-## Automation Workflow
-
-### Step-by-Step
-1. **SupervisorController.Run**
-   - Scans `supervisor\<shift>\<line>` directories.
-   - Reads the latest file for each.
-   - Maps supervisor columns → master columns.
-   - Writes consolidated data to the master workbook.
-
-2. **DowntimeController.Run**
-   - Reads production and maintenance downtime from supervisor sheets.
-   - Populates the Downtime Master workbook.
-
-3. **FileHelper.ArchiveProcessedFiles**
-   - Moves processed supervisor files to the archive directory.
-
-4. **LogHelper.Log**
-   - Records all actions, errors, and timestamps.
 
 ---
 
@@ -169,7 +148,7 @@ D:\project\OakPark-Data-YE\Logs\YYYY-MM-DD_Log.txt
 - **Automated (Scheduled Task):**  
   Use a `.vbs` or PowerShell script to open Excel silently and run:
   ```vbs
-  Excel.Run "MainController.RunPRISM"
+  Excel.Run "MainController.RunImport"
   ```
   Schedule it via Windows Task Scheduler to execute nightly.
 
@@ -177,7 +156,7 @@ D:\project\OakPark-Data-YE\Logs\YYYY-MM-DD_Log.txt
 
 ## Column Mapping Overview
 
-Column mappings define how supervisor sheet columns align with master workbook columns.
+Column mappings define how supervisor/curing columns align with master workbook columns.
 
 ### Example (Lines 1 & 2-3)
 | Supervisor | Master |
@@ -217,37 +196,6 @@ These mappings ensure all downtime events align correctly between site sheets an
 
 ---
 
-## Testing
-
-### Recommended Tests
-1. **Config Validation**
-   - Run `?cfg.GetPath("master_file")` in the Immediate Window.
-   - Ensure all paths resolve correctly.
-
-2. **Controller Dry Run**
-   - Execute `SupervisorController.Run` and verify:
-     - Imported data count.
-     - Log entries created.
-     - Archive files moved.
-
-3. **Error Handling**
-   - Test with missing supervisor files → should log a warning, not crash.
-
-4. **Date Validation**
-   - Modify `TARGET_DATE` and confirm all imports target the correct week.
-
----
-
-## Security & Reliability
-
-- VBA project protected with a password.  
-- Workbooks locked as read-only archives after each import.  
-- Trusted Locations enforced to prevent macro security prompts.  
-- Logging for every file operation and error.  
-- Optional digital signature via `SelfCert`.  
-
----
-
 ## Future Enhancements
 
 | Feature | Description |
@@ -256,20 +204,6 @@ These mappings ensure all downtime events align correctly between site sheets an
 | **Email Notifications** | Automatic email alerts upon import completion. |
 | **Python Integration** | Feed processed data into predictive models (RandomForest / XGBoost) for yield forecasting. |
 | **Web Interface (Phase 2)** | Browser-based view for managers, linked to live Excel or SQL backend. |
-
----
-
-## Version Control
-Each release is versioned manually and archived under:
-
-```
-D:\project\OakPark-Data-YE\versions\
-   ├── v1.0_2025-10-01\
-   ├── v1.1_2025-11-15\
-   └── VersionTracker.xlsm
-```
-
-All VBA modules are exported to text for traceability and checksum verified before deployment.
 
 ---
 
@@ -282,7 +216,6 @@ All VBA modules are exported to text for traceability and checksum verified befo
   - `PascalCase` for classes.  
 - Avoid global variables — pass helpers explicitly.  
 - Always close workbooks and set objects to `Nothing` after use.  
-- Validate array bounds before iteration.  
 
 ---
 
@@ -296,18 +229,6 @@ flowchart TD
     D --> E[Master Workbooks]
     E --> F[Dashboard & Reporting]
 ```
-
----
-
-## Changelog
-
-**v1.0 (October 2025)**
-- Initial production release  
-- ConfigHelper centralised constants  
-- Added dependency-injected architecture  
-- Added Supervisor and Downtime controllers  
-- Full logging and archiving implemented  
-
 ---
 
 ## Contact

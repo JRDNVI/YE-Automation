@@ -16,13 +16,13 @@ Public Sub runYEImport()
     Dim fh  As New FileHelper
  
     Dim supervisorController As New SupervisorImportController
-    'Dim curingController As New CuringImportController
+    Dim curingController As New CuringImportController
 
     supervisorController.Init cfg, lg, xl, fh
-    'curingController.Init cfg, lg, curingXl, fh
+    curingController.Init cfg, lg, curingXl, fh
 
     supervisorController.RunImport
-    'curingController.RunImport
+    curingController.RunImport
 
     Exit Sub
 ERR_HANDLER:
