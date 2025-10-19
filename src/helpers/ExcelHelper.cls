@@ -142,9 +142,14 @@ Public Sub ReadProductionDowntime(ByVal filePath As String, _
         Dim val As Variant
         val = ws.Range("C" & i).Value
 
-        If IsEmpty(val) Or val = 0 Or UCase(val) = "N/A" Or LCase(val) = "total" Then Exit Do
+        ' === SAFETY: Skip rows with formula errors or invalid values ===
+        If IsError(val) Then Exit Do
+        If IsEmpty(val) Then Exit Do
+        If Trim(val & "") = "" Then Exit Do
+        If IsNumeric(val) And val = 0 Then Exit Do
+        If LCase(val) = "total" Or LCase(val) = "n/a" Then Exit Do
 
-        ' create row array based on colMap
+        ' === Build row ===
         ReDim tempRow(LBound(colMap) To UBound(colMap))
         For c = LBound(colMap) To UBound(colMap)
             tempRow(c) = ws.Range(colMap(c)(0) & i).Value
@@ -152,8 +157,9 @@ Public Sub ReadProductionDowntime(ByVal filePath As String, _
         dataList.Add tempRow
 
         i = i + 1
-        If i > 2000 Then Exit Do 
+        If i > 2000 Then Exit Do
     Loop
+
 
     wb.Close False
 
@@ -409,5 +415,5 @@ Private Sub WriteToMaster(ByVal dataList As Collection, _
     Next dataRow
 
     wb.Close True
-    logger.Info count & "Rows written to Master."
+    logger.Info count & " Rows written to Master."
 End Sub

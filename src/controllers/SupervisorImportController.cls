@@ -17,14 +17,15 @@ Private logger As LogHelper
 Private xlHelper As ExcelHelper
 Private fileHelper As FileHelper
 
+Public Sub Init(ByRef cfg As ConfigHelper, ByRef lg As LogHelper, ByRef xl As ExcelHelper, ByRef fh As FileHelper)
+    Set configHelper = cfg
+    Set logger = lg
+    Set xlHelper = xl
+    Set fileHelper = fh
+End Sub
+
 Public Sub RunImport()
     On Error GoTo ERR_HANDLER
-
-    ' Initialise helpers classes 
-    Set configHelper = New ConfigHelper
-    Set logger = New LogHelper
-    Set xlHelper = New ExcelHelper
-    Set fileHelper = New FileHelper
 
     ' Start log session
     logger.StartSession configHelper.GetPath("log_folder")

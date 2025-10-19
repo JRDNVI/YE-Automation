@@ -1,4 +1,4 @@
-# Oakpark Yields & Efficiency Automation System (PRISM-YE)
+# Oakpark Yields & Efficiency Automation System
 
 ### Version 1.0  |  Author: Jordon Coady (IT Graduate – Oakpark Foods)
 
@@ -7,7 +7,7 @@
 ## Overview
 The **Oakpark Yields & Efficiency Automation System** is a fully automated data ingestion and reporting framework designed to consolidate weekly supervisor production sheets into centralised Excel master workbooks.
 
-It eliminates manual data entry, ensures data consistency, and produces automated KPI dashboards, logs, and variance reports for operational visibility.
+It minimises manual data entry, ensures data consistency, and produces automated KPI dashboards, logs, and variance reports for operational visibility.
 
 The project is written entirely in **VBA (Visual Basic for Applications)** and designed to run safely within a controlled network environment (no external dependencies).
 
@@ -22,9 +22,8 @@ The project is written entirely in **VBA (Visual Basic for Applications)** and d
 | **LogHelper.cls** | Handles all runtime logging, timestamps, and error tracing. Writes logs to `BASE_PATH\Logs\`. |
 | **ExcelHelper.cls** | Performs safe workbook reads/writes, manages staging buffers, and consolidates data into the master workbook. |
 | **FileHelper.cls** | Handles directory traversal, file discovery, and archiving (e.g. finding the latest supervisor files). |
-| **SupervisorController.cls** | Coordinates the import of weekly supervisor yield/efficiency data into the master file. |
-| **DowntimeController.cls** | Imports production and maintenance downtime data into the downtime master. |
-| **MainController.bas** | Entry point of the system. Creates shared helper instances and orchestrates controller execution. |
+| **SupervisorImportController.cls** | Coordinates the import of daily supervisor yield/efficiency, production, and maintenance data into the master file. |
+| **CuringImportController.cls** | Imports daily yield/efficiency Data. |
 
 ---
 
