@@ -43,7 +43,7 @@ Public Sub RunImport()
     Dim shifts As Variant: shifts = configHelper.GetShifts
     Dim CuringPrefixes As Variant: CuringPrefixes = configHelper.GetCuringPrefixes
     Dim thermoColMap As Variant: thermoColMap = configHelper.GetThermoColumns
-    'Dim smokingColMap As Variant: smokingColMap = configHelper.GetSmokingColumns
+    Dim smokingColMap As Variant: smokingColMap = configHelper.GetSmokingColumns
 
     Dim shift As Variant, prefix As Variant
     Dim folder As String, fileName As String
@@ -61,7 +61,7 @@ Public Sub RunImport()
                 curingHelper.ReadThermoData fileName, masterPath, shift, thermoColMap, targetDate, logger
             Else 
                 logger.Info "Found file: " & fileName
-                'curingXl.ImportSmokingData folder & fileName, masterPath, logger
+                curingHelper.ReadSmokingData fileName, masterPath, shift, smokingColMap, targetDate, logger
             End If
         Next prefix
     Next shift

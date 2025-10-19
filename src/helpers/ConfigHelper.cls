@@ -110,8 +110,13 @@ Private Sub Class_Initialize()
         Array("H", "D") _
     )
 
-   ' SmokingColumns = Array( _
-       p Array("B", "C") _
+    SmokingColumns = Array( _
+        Array("B", "G"), _
+        Array("C", "F"), _
+        Array("E", "E"), _
+        Array("A", "C"), _
+        Array("I", "H"), _
+        Array("J", "I") _
     )
     
 End Sub
@@ -145,7 +150,7 @@ public Function GetCuringPrefixes() As Variant: GetCuringPrefixes = CuringPrefix
 Public Function GetColumns() As Variant: GetColumns = Columns: End Function
 Public Function GetLine4_Columns() As Variant: GetLine4_Columns = Line4_Columns: End Function
 Public Function GetThermoColumns() As Variant: GetThermoColumns = ThermoColumns: End Function
-'Public Function GetSmokingColumns() As Variant: GetSmokingColumns = SmokingColumns: End Function
+Public Function GetSmokingColumns() As Variant: GetSmokingColumns = SmokingColumns: End Function
 
 Public Function GetProductionDowntimeColumns() As Variant: GetProductionDowntimeColumns = production_downtime_columns: End Function
 Public Function GetMaintenanceDowntimeColumns() As Variant: GetMaintenanceDowntimeColumns = maintenance_downtime_columns: End Function
