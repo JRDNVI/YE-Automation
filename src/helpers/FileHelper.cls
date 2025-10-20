@@ -14,30 +14,71 @@ Public Function GetLatestFile(ByVal folder As String, _
                               ByRef logger As LogHelper) As String
     On Error GoTo EH
 
-    Dim targetFile As String, fileName As String
-    Dim latestFile As String, latestDate As Date, thisDate As Date
-    Dim parts() As String, base As String
+    Dim fName As String
+    Dim latestFile As String
+    Dim latestDate As Date
+    Dim thisDate As Date
+    Dim fullPath As String
+    Dim targetFile As String
 
-    If Right(folder, 1) <> "\" Then folder = folder & "\"
-
-    targetFile = Format(targetDate, "dd.mm.yyyy") & ".xlsx"
-    If Len(Dir(folder & targetFile)) > 0 Then
-        logger.Info "Exact match found: " & folder & targetFile
-        GetLatestFile = targetFile
+    ' === Ensure valid folder ===
+    If Len(folder) = 0 Then
+        logger.Error "GetLatestFile: Folder path is empty."
         Exit Function
     End If
 
-    If latestFile <> "" Then
-        logger.Info "Using latest available file: " & folder & latestFile
+    If Right(folder, 1) <> "\" Then folder = folder & "\"
+    If Dir(folder, vbDirectory) = "" Then
+        logger.Warn "GetLatestFile: Folder does not exist - " & folder
+        Exit Function
     End If
 
-    GetLatestFile = latestFile
+    ' === Look for exact match first ===
+    targetFile = Format(targetDate, "dd.mm.yyyy") & ".xlsx"
+    If Len(Dir(folder & targetFile)) > 0 Then
+        logger.Info "Exact match found: " & folder & targetFile
+        GetLatestFile = folder & targetFile
+        Exit Function
+    End If
+
+    ' === Scan for most recent file ===
+    fName = Dir(folder & "*.xls*")
+    Do While fName <> ""
+        ' Skip temp/hidden/backup files
+        If Left(fName, 2) <> "~$" And InStr(1, fName, "backup", vbTextCompare) = 0 Then
+            fullPath = folder & fName
+            On Error Resume Next
+            thisDate = FileDateTime(fullPath)
+            If Err.Number = 0 Then
+                If thisDate > latestDate Then
+                    latestDate = thisDate
+                    latestFile = fullPath
+                End If
+            Else
+                logger.Warn "Skipping invalid file: " & fullPath & " (" & Err.Description & ")"
+                Err.Clear
+            End If
+            On Error GoTo EH
+        End If
+        fName = Dir
+    Loop
+
+    ' === Return latest file if available ===
+    If Len(latestFile) > 0 Then
+        logger.Info "Using latest available file: " & latestFile
+        GetLatestFile = latestFile
+    Else
+        logger.Warn "No valid Excel files found in: " & folder
+        GetLatestFile = ""
+    End If
+
     Exit Function
 
 EH:
-    logger.[Error] "FileHelper.GetLatestFile: " & Err.Description
+    logger.[Error] "FileHelper.GetLatestFile error " & Err.Number & ": " & Err.Description
     GetLatestFile = ""
 End Function
+
 
 
 Public Function GetLatestCuringFile(ByVal folder As String, _

@@ -12,17 +12,16 @@ Option Explicit
 ' If any changes are needed, they should be made here
 ' ===========================================
 
-Private Const BASE_PATH As String = "D:\project\OakPark-Data-YE\"
-Private Const MASTER_FILE As String = BASE_PATH & "Master-Data\Yields and Efficiencies 2025 - Cahir.xlsb"
-private Const MASTER_DOWNTIME_FILE As String = BASE_PATH & "Master-Data\Downtime Master 2025.xlsx"
-Private Const SUPERVISOR_ROOT As String = BASE_PATH & "supervisor\"
-Private Const CURING_ROOT As String = BASE_PATH & "supervisor\Curing Hall\"
-Private Const LOG_FOLDER As String = BASE_PATH & "Logs\"
+Private Const MASTER_FILE As String = "\\Oak-w2k22-dc01\Department\Production\Production\Yields\2025\Yields and Efficiencies 2025 - Cahir.xlsb"
+private Const MASTER_DOWNTIME_FILE As String = "\\Oak-w2k22-dc01\Department\Production\Production\Yields\2025\Downtime Master File 2025 (New).xlsx"
+Private Const SUPERVISOR_ROOT As String = "\\Oak-w2k22-dc01\Department\Supervisor\"
+Private Const CURING_ROOT As String = SUPERVISOR_ROOT & "Curing Hall\"
+Private Const LOG_FOLDER As String = "C:\Users\coadyj\projects\YE-Automation\Logs\"
 
 ' This is the year and month for the import process
 Private Const YEAR_VALUE As Long = 2025 ' Year used in folder paths
 Private Const MONTH_VALUE As String = "October" ' Month name as used in folder paths
-Private Const TARGET_DATE As String = "08.10.2025"  ' File to target (dd.mm.yyyy)
+Private Const TARGET_DATE As String = "17.10.2025"  ' File to target (dd.mm.yyyy)
 
 Private Shifts As Variant
 Private Lines As Variant
@@ -38,8 +37,8 @@ Private ThermoColumns As Variant
 private SmokingColumns As Variant
 
 Private Sub Class_Initialize()
-    Shifts = Array("day shift", "night shift")
-    Lines = Array("Line 1", "Line 2-3", "Line 4")
+    Shifts = Array("Day Shift Yield & Efficiency", "Night Shift Yield & Efficiency")
+    Lines = Array("Line 1", "Line 2 & 3", "Line 4")
     CuringPrefixes = Array("Smoking & Heat Treating Day By Hour Sheet", "Thermo Day By Hour Sheet.")
 
     ' Column mappings: { SupervisorCol, MasterCol }
@@ -65,8 +64,8 @@ Private Sub Class_Initialize()
         Array("L", "Q"), _
         Array("R", "M"), _
         Array("S", "I"), _
-        Array("X", "U"), _
-        Array("Z", "V") _
+        Array("X", "Y"), _
+        Array("Z", "AA") _
     )
 
     production_downtime_columns = Array( _
@@ -84,24 +83,25 @@ Private Sub Class_Initialize()
     )
 
      production_downtime_columns_4 = Array( _
-        Array("B", "D"), _
-        Array("C", "E"), _
+        Array("B", "B"), _
+        Array("C", "C"), _
         Array("H", "F"), _
         Array("I", "G"), _
         Array("K", "H"), _
         Array("M", "I"), _
-        Array("O", "J"), _
+        Array("M", "J"), _
         Array("R", "K"), _
         Array("V", "M"), _
-        Array("X", "N"), _
-        Array("Z", "P") _
+        Array("X", "O"), _
+        Array("Z", "Q") _
     )
 
     maintenance_downtime_columns = Array( _
-        Array("C", "E"), _
-        Array("I", "O"), _
+        Array("C", "C"), _
+        Array("I", "P"), _
+        Array("M", "N"), _
         Array("M", "F"), _
-        Array("O", "P") _
+        Array("O", "Q") _
     )
 
     ThermoColumns = Array( _ 

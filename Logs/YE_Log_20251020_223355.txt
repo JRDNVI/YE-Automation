@@ -1,0 +1,16 @@
+22:33:55 [INFO] Log session started at 20/10/2025 22:33:55
+22:33:55 [INFO] === Supervisor Import Started ===
+22:33:55 [INFO] Using static configuration values
+22:33:55 [INFO] Processing shift: Day Shift Yield & Efficiency
+22:33:55 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\
+22:33:56 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:33:56 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:33:58 [INFO]  Supervisor: Piotr
+22:33:58 [INFO] 9 rows collected.
+22:34:29 [INFO] 9 Rows written to Master.
+22:34:29 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:34:34 [INFO]  Found 'Production Downtime' starting at row 55
+22:34:34 [INFO] 8 Downtime rows collected.
+22:34:34 [INFO] Writing production downtime to master file...
+22:34:35 [ERROR] Unhandled error: Object variable or With block variable not set
+22:34:35 [INFO] Log session closed.

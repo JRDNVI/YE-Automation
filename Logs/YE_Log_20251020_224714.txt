@@ -1,0 +1,9 @@
+22:47:14 [INFO] Log session started at 20/10/2025 22:47:14
+22:47:14 [INFO] === Supervisor Import Started ===
+22:47:14 [INFO] Using static configuration values
+22:47:14 [INFO] Processing shift: Day Shift Yield & Efficiency
+22:47:14 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\
+22:47:14 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:47:14 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:47:16 [INFO]  Supervisor: Piotr
+22:47:16 [INFO] 9 rows collected.

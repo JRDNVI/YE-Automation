@@ -1,0 +1,76 @@
+22:50:11 [INFO] Log session started at 20/10/2025 22:50:11
+22:50:11 [INFO] === Supervisor Import Started ===
+22:50:11 [INFO] Using static configuration values
+22:50:11 [INFO] Processing shift: Day Shift Yield & Efficiency
+22:50:11 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\
+22:50:12 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:50:12 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:50:14 [INFO]  Supervisor: Piotr
+22:50:14 [INFO] 9 rows collected.
+22:50:40 [INFO] 9 Rows written to Master.
+22:50:40 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:50:46 [INFO]  Found 'Production Downtime' starting at row 55
+22:50:46 [INFO] 8 Downtime rows collected.
+22:50:46 [INFO] Writing production downtime to master file...
+22:50:49 [INFO] 8 production downtime rows written to Master file.
+22:50:49 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:50:50 [INFO] Found Breakdown Downtime start at row 84
+22:50:50 [INFO] Total Breakdown downtime rows collected: 0
+22:50:50 [INFO] Writing Maintenance downtime to master file...
+22:50:51 [INFO] 0 production downtime rows written to Master file.
+22:50:51 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\
+22:50:51 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:50:51 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:50:52 [INFO]  Supervisor: Andrius
+22:50:52 [INFO] 10 rows collected.
+22:51:20 [INFO] 10 Rows written to Master.
+22:51:20 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:51:28 [INFO]  Found 'Production Downtime' starting at row 56
+22:51:28 [INFO] 10 Downtime rows collected.
+22:51:28 [INFO] Writing production downtime to master file...
+22:51:31 [INFO] 10 production downtime rows written to Master file.
+22:51:31 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:51:32 [INFO] Found Breakdown Downtime start at row 85
+22:51:32 [INFO] Total Breakdown downtime rows collected: 0
+22:51:32 [INFO] Writing Maintenance downtime to master file...
+22:51:33 [INFO] 0 production downtime rows written to Master file.
+22:51:33 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\
+22:51:33 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+22:51:33 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+22:51:34 [INFO]  Supervisor: John
+22:51:34 [INFO] 15 rows collected.
+22:52:02 [INFO] 15 Rows written to Master.
+22:52:02 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+22:52:10 [INFO]  Found 'Production Downtime' starting at row 49
+22:52:10 [INFO] 15 Downtime rows collected.
+22:52:10 [INFO] Writing production downtime to master file...
+22:52:13 [INFO] 15 production downtime rows written to Master file.
+22:52:13 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+22:52:14 [INFO] Found Breakdown Downtime start at row 73
+22:52:14 [INFO] Total Breakdown downtime rows collected: 4
+22:52:14 [INFO] Writing Maintenance downtime to master file...
+22:52:17 [INFO] 4 production downtime rows written to Master file.
+22:52:17 [INFO] Processing shift: Night Shift Yield & Efficiency
+22:52:17 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\
+22:52:17 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:52:17 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:52:18 [INFO]  Supervisor: Gigi
+22:52:18 [INFO] 9 rows collected.
+22:52:46 [INFO] 9 Rows written to Master.
+22:52:46 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:52:49 [INFO]  Found 'Production Downtime' starting at row 34
+22:52:49 [INFO] 9 Downtime rows collected.
+22:52:49 [INFO] Writing production downtime to master file...
+22:52:52 [INFO] 9 production downtime rows written to Master file.
+22:52:52 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:52:53 [INFO] Found Breakdown Downtime start at row 47
+22:52:53 [INFO] Total Breakdown downtime rows collected: 0
+22:52:53 [INFO] Writing Maintenance downtime to master file...
+22:52:54 [INFO] 0 production downtime rows written to Master file.
+22:52:54 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\
+22:52:54 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:52:54 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:52:55 [INFO]  Supervisor: Dawid
+22:52:55 [INFO] 4 rows collected.
+22:53:22 [INFO] 4 Rows written to Master.
+22:53:22 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & 

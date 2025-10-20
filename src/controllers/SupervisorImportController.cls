@@ -72,9 +72,9 @@ Public Sub RunImport()
                 End If
 
                 ' Call Excel helper to read data from supervisor files
-                xlHelper.ReadSupervisorData folder & fileName, lineName, shift, masterPath, colMap, logger, targetDate
-                xlHelper.ReadProductionDowntime folder & fileName, lineName, shift, downtimePath, prodCol, logger, targetDate
-                xlHelper.ReadBreakdownDowntime folder & fileName, lineName, shift, downtimePath, maintCol, logger, targetDate
+                xlHelper.ReadSupervisorData fileName, lineName, shift, masterPath, colMap, logger, targetDate
+                xlHelper.ReadProductionDowntime fileName, lineName, shift, downtimePath, prodCol, logger, targetDate
+                xlHelper.ReadBreakdownDowntime fileName, lineName, shift, downtimePath, maintCol, logger, targetDate
             Else
                 logger.Warn " No valid Excel file found for " & lineName
             End If

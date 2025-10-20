@@ -4,8 +4,8 @@
 # ==============================================================
 
 # === CONFIG ===
-$srcPath   = "D:\project\OakPark-Data-YE\src"                # Root of VBA source files
-$tempDir   = "D:\project\OakPark-Data-YE\temp"               # Where to create temporary workbooks
+$srcPath   = "C:\Users\coadyj\projects\YE-Automation\src"                
+$tempDir   = "C:\Users\coadyj\projects\YE-Automation\temp"            
 $macroName = "ImportSupervisorSheets"                        # Entry macro name
 
 # === Ensure temp folder exists ===
@@ -17,10 +17,12 @@ if (-not (Test-Path $tempDir)) {
 $timestamp  = Get-Date -Format "yyyyMMdd_HHmmss"
 $tempFile   = Join-Path $tempDir ("TempHost_" + $timestamp + ".xlsm")
 
-Write-Host "📁 Creating temporary Excel host workbook: $tempFile"
+Write-Host "Creating temporary Excel host workbook: $tempFile"
 
 # === Create Excel COM object ===
 $excel = New-Object -ComObject Excel.Application
+# Force-load VBIDE type library
+[void][System.Runtime.InteropServices.Marshal]::GetActiveObject("Excel.Application")
 $excel.Visible = $false
 $excel.DisplayAlerts = $false
 
@@ -29,6 +31,7 @@ $workbook = $excel.Workbooks.Add()
 $workbook.SaveAs($tempFile, 52)  # 52 = xlOpenXMLWorkbookMacroEnabled (.xlsm)
 
 # === Import all .bas and .cls files ===
+Start-Sleep -Seconds 3
 $vbaProject = $workbook.VBProject
 $sourceFiles = Get-ChildItem -Path $srcPath -Recurse -Include *.bas, *.cls
 
@@ -39,7 +42,7 @@ foreach ($file in $sourceFiles) {
 
 # === Run the specified macro ===
 try {
-    Write-Host "⚙️ Running macro: $macroName"
+    Write-Host "Running macro: $macroName"
     $excel.Run($macroName)
     Write-Host "Macro executed successfully."
 } catch {
@@ -57,10 +60,10 @@ $excel.Quit()
 try {
     if (Test-Path $tempFile) {
         Remove-Item $tempFile -Force
-        Write-Host "🧹 Deleted temp file: $tempFile"
+        Write-Host "Deleted temp file: $tempFile"
     }
 } catch {
-    Write-Host "⚠️ Could not delete temp file (it might be locked)."
+    Write-Host "Could not delete temp file (it might be locked)."
 }
 
-Write-Host "🏁 Supervisor import completed from dynamic temp workbook."
+Write-Host "Supervisor import completed from dynamic temp workbook."

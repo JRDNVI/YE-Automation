@@ -188,9 +188,26 @@ Public Sub ReadBreakdownDowntime(ByVal filePath As String, _
     logger.Info "Opening for Breakdown Downtime: " & filePath
 
     'Open file safely 
-    On Error Resume Next
-    Set wb = Workbooks.Open(CStr(filePath), ReadOnly:=True)
-    On Error GoTo 0
+        Dim secLevel As MsoAutomationSecurity
+        secLevel = Application.AutomationSecurity
+
+        On Error Resume Next
+        Application.DisplayAlerts = False
+        Application.AskToUpdateLinks = False
+        Application.EnableEvents = False
+        Application.AutomationSecurity = msoAutomationSecurityForceDisable
+
+        Set wb = Workbooks.Open(Filename:=downtimePath, _
+                        UpdateLinks:=0, _
+                        ReadOnly:=False, _
+                        IgnoreReadOnlyRecommended:=True, _
+                        Notify:=False)
+
+        Application.AutomationSecurity = secLevel
+        Application.DisplayAlerts = True
+        Application.EnableEvents = True
+        On Error GoTo 0
+
 
     If wb Is Nothing Then
         logger.Error "Could not open workbook."
@@ -273,9 +290,24 @@ Private Sub WriteBreakdownDowntimeToMaster(ByVal dataList As Collection, _
 
     logger.Info "Writing Maintenance downtime to master file..."
 
-    On Error Resume Next
-    Set wb = Workbooks.Open(downtimePath)
-    On Error GoTo 0
+        ' === Open master workbook safely ===
+        On Error Resume Next
+        Application.DisplayAlerts = False
+        Application.AskToUpdateLinks = False
+        Application.EnableEvents = False
+        Application.AutomationSecurity = msoAutomationSecurityForceDisable
+
+        Set wb = Workbooks.Open(Filename:=downtimePath, _
+                        UpdateLinks:=0, _
+                        ReadOnly:=False, _
+                        IgnoreReadOnlyRecommended:=True, _
+                        Notify:=False)
+
+        Application.DisplayAlerts = True
+        Application.EnableEvents = True
+        Application.AutomationSecurity = msoAutomationSecurityLow
+        On Error GoTo 0
+
 
     If wb Is Nothing Then
         logger.Error "Could not open Master workbook for downtime write."
@@ -284,7 +316,7 @@ Private Sub WriteBreakdownDowntimeToMaster(ByVal dataList As Collection, _
 
     'Locate or create target sheet
     On Error Resume Next
-    Set ws = wb.Sheets("Sheet1")
+    Set ws = wb.Sheets("Master Downtime")
     On Error GoTo 0
 
     'Find the next available row 
@@ -293,9 +325,9 @@ Private Sub WriteBreakdownDowntimeToMaster(ByVal dataList As Collection, _
     For Each dataRow In dataList
         With ws
             .Range("A" & nextRow).Value = targetDate
-            .Range("B" & nextRow).Value = lineName
-            .Range("C" & nextRow).Value = shiftName
-            .Range("O" & nextRow).Value = "Maintenance"  
+            .Range("D" & nextRow).Value = lineName
+            .Range("E" & nextRow).Value = shiftName
+            .Range("P" & nextRow).Value = "Maintenance"  
 
             For c = LBound(colMap) To UBound(colMap)
                 .Range(colMap(c)(1) & nextRow).Value = dataRow(c)
@@ -327,9 +359,24 @@ Private Sub WriteProductionDowntimeToMaster(ByVal dataList As Collection, _
     logger.Info "Writing production downtime to master file..."
 
     ' === Open master workbook ===
-    On Error Resume Next
-    Set wb = Workbooks.Open(downtimePath)
-    On Error GoTo 0
+    ' === Open master workbook safely ===
+        On Error Resume Next
+        Application.DisplayAlerts = False
+        Application.AskToUpdateLinks = False
+        Application.EnableEvents = False
+        Application.AutomationSecurity = msoAutomationSecurityForceDisable
+
+        Set wb = Workbooks.Open(Filename:=downtimePath, _
+                        UpdateLinks:=0, _
+                        ReadOnly:=False, _
+                        IgnoreReadOnlyRecommended:=True, _
+                        Notify:=False)
+
+        Application.DisplayAlerts = True
+        Application.EnableEvents = True
+        Application.AutomationSecurity = msoAutomationSecurityLow
+        On Error GoTo 0
+
 
     If wb Is Nothing Then
         logger.Error "Could not open Master workbook for downtime write."
@@ -338,7 +385,7 @@ Private Sub WriteProductionDowntimeToMaster(ByVal dataList As Collection, _
 
     'Locate or create target sheet
     On Error Resume Next
-    Set ws = wb.Sheets("Sheet1")
+    Set ws = wb.Sheets("Master Downtime")
     On Error GoTo 0
 
     'Find the next available row 
@@ -348,9 +395,9 @@ Private Sub WriteProductionDowntimeToMaster(ByVal dataList As Collection, _
     For Each dataRow In dataList
         With ws
             .Range("A" & nextRow).Value = targetDate
-            .Range("B" & nextRow).Value = lineName
-            .Range("C" & nextRow).Value = shiftName
-            .Range("O" & nextRow).Value = "Production"  
+            .Range("D" & nextRow).Value = lineName
+            .Range("E" & nextRow).Value = shiftName
+            .Range("P" & nextRow).Value = "Production"  
 
             For c = LBound(colMap) To UBound(colMap)
                 .Range(colMap(c)(1) & nextRow).Value = dataRow(c)

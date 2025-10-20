@@ -1,0 +1,64 @@
+22:38:03 [INFO] Log session started at 20/10/2025 22:38:03
+22:38:03 [INFO] === Supervisor Import Started ===
+22:38:03 [INFO] Using static configuration values
+22:38:03 [INFO] Processing shift: Day Shift Yield & Efficiency
+22:38:03 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\
+22:38:03 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:38:03 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:38:05 [INFO]  Supervisor: Piotr
+22:38:05 [INFO] 9 rows collected.
+22:38:34 [INFO] 9 Rows written to Master.
+22:38:34 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:38:37 [INFO]  Found 'Production Downtime' starting at row 55
+22:38:37 [INFO] 8 Downtime rows collected.
+22:38:37 [INFO] Writing production downtime to master file...
+22:38:44 [INFO] 8 production downtime rows written to Master file.
+22:38:44 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:38:46 [INFO] Found Breakdown Downtime start at row 84
+22:38:46 [INFO] Total Breakdown downtime rows collected: 0
+22:38:46 [INFO] Writing Maintenance downtime to master file...
+22:38:49 [INFO] 0 production downtime rows written to Master file.
+22:38:49 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\
+22:38:49 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:38:49 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:38:50 [INFO]  Supervisor: Andrius
+22:38:50 [INFO] 10 rows collected.
+22:38:53 [ERROR] Could not open Master workbook.
+22:38:53 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:38:54 [INFO]  Found 'Production Downtime' starting at row 56
+22:38:54 [INFO] 10 Downtime rows collected.
+22:38:54 [INFO] Writing production downtime to master file...
+22:38:56 [INFO] 10 production downtime rows written to Master file.
+22:38:56 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+22:38:58 [INFO] Found Breakdown Downtime start at row 85
+22:38:58 [INFO] Total Breakdown downtime rows collected: 0
+22:38:58 [INFO] Writing Maintenance downtime to master file...
+22:39:00 [INFO] 0 production downtime rows written to Master file.
+22:39:00 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\
+22:39:00 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+22:39:00 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+22:39:01 [INFO]  Supervisor: John
+22:39:01 [INFO] 15 rows collected.
+22:39:08 [ERROR] Could not open Master workbook.
+22:39:08 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+22:39:08 [INFO]  Found 'Production Downtime' starting at row 49
+22:39:09 [INFO] 15 Downtime rows collected.
+22:39:09 [INFO] Writing production downtime to master file...
+22:39:11 [INFO] 15 production downtime rows written to Master file.
+22:39:11 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+22:39:13 [INFO] Found Breakdown Downtime start at row 73
+22:39:13 [INFO] Total Breakdown downtime rows collected: 4
+22:39:13 [INFO] Writing Maintenance downtime to master file...
+22:39:15 [INFO] 4 production downtime rows written to Master file.
+22:39:15 [INFO] Processing shift: Night Shift Yield & Efficiency
+22:39:15 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\
+22:39:15 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:39:15 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:39:16 [INFO]  Supervisor: Gigi
+22:39:16 [INFO] 9 rows collected.
+22:39:34 [INFO] 9 Rows written to Master.
+22:39:34 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+22:39:38 [INFO]  Found 'Production Downtime' starting at row 34
+22:39:38 [INFO] 9 Downtime rows collected.
+22:39:38 [INFO] Writing production downtime to master file...
+22:42:40 [INFO] 9 production downtime rows written to Master fi

@@ -1,0 +1,25 @@
+22:05:24 [INFO] Log session started at 20/10/2025 22:05:24
+22:05:24 [INFO] === Supervisor Import Started ===
+22:05:24 [INFO] Using static configuration values
+22:05:24 [INFO] Processing shift: Day Shift Yield & Efficiency
+22:05:24 [INFO] Folder: \\Oak-w2k22-dco1\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\
+22:05:33 [ERROR] FileHelper.GetLatestFile: Bad file name or number
+22:05:33 [WARN]  No valid Excel file found for Line 1
+22:05:33 [INFO] Folder: \\Oak-w2k22-dco1\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\
+22:05:33 [ERROR] FileHelper.GetLatestFile: Bad file name or number
+22:05:33 [WARN]  No valid Excel file found for Line 2 & 3
+22:05:33 [INFO] Folder: \\Oak-w2k22-dco1\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\
+22:05:33 [ERROR] FileHelper.GetLatestFile: Bad file name or number
+22:05:33 [WARN]  No valid Excel file found for Line 4
+22:05:33 [INFO] Processing shift: Night Shift Yield & Efficiency
+22:05:33 [INFO] Folder: \\Oak-w2k22-dco1\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\
+22:05:33 [ERROR] FileHelper.GetLatestFile: Bad file name or number
+22:05:33 [WARN]  No valid Excel file found for Line 1
+22:05:33 [INFO] Folder: \\Oak-w2k22-dco1\Department\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\
+22:05:33 [ERROR] FileHelper.GetLatestFile: Bad file name or number
+22:05:33 [WARN]  No valid Excel file found for Line 2 & 3
+22:05:33 [INFO] Folder: \\Oak-w2k22-dco1\Department\Supervisor\Night Shift Yield & Efficiency\Line 4\2025\October\
+22:05:33 [ERROR] FileHelper.GetLatestFile: Bad file name or number
+22:05:33 [WARN]  No valid Excel file found for Line 4
+22:05:33 [INFO] Import complete.
+22:05:33 [INFO] Log session closed.

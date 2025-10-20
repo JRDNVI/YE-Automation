@@ -1,0 +1,75 @@
+23:21:17 [INFO] Log session started at 20/10/2025 23:21:17
+23:21:17 [INFO] === Supervisor Import Started ===
+23:21:17 [INFO] Using static configuration values
+23:21:17 [INFO] Processing shift: Day Shift Yield & Efficiency
+23:21:17 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\
+23:21:18 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+23:21:18 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+23:21:20 [INFO]  Supervisor: Piotr
+23:21:20 [INFO] 9 rows collected.
+23:21:57 [INFO] 9 Rows written to Master.
+23:21:57 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+23:22:06 [INFO]  Found 'Production Downtime' starting at row 55
+23:22:06 [INFO] 8 Downtime rows collected.
+23:22:06 [INFO] Writing production downtime to master file...
+23:22:10 [INFO] 8 production downtime rows written to Master file.
+23:22:10 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+23:22:12 [WARN] Missing 'Yields and Efficiency' sheet.
+23:22:12 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\
+23:22:12 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+23:22:12 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+23:22:13 [INFO]  Supervisor: Andrius
+23:22:13 [INFO] 10 rows collected.
+23:23:22 [INFO] 10 Rows written to Master.
+23:23:22 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+23:23:25 [INFO]  Found 'Production Downtime' starting at row 56
+23:23:25 [INFO] 10 Downtime rows collected.
+23:23:25 [INFO] Writing production downtime to master file...
+23:23:30 [INFO] 10 production downtime rows written to Master file.
+23:23:30 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+23:23:31 [WARN] Missing 'Yields and Efficiency' sheet.
+23:23:31 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\
+23:23:31 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+23:23:31 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+23:23:33 [INFO]  Supervisor: John
+23:23:33 [INFO] 15 rows collected.
+23:24:38 [INFO] 15 Rows written to Master.
+23:24:38 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+23:24:59 [INFO]  Found 'Production Downtime' starting at row 49
+23:24:59 [INFO] 15 Downtime rows collected.
+23:24:59 [INFO] Writing production downtime to master file...
+23:25:03 [INFO] 15 production downtime rows written to Master file.
+23:25:03 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\17.10.2025.xlsx
+23:25:04 [WARN] Missing 'Yields and Efficiency' sheet.
+23:25:04 [INFO] Processing shift: Night Shift Yield & Efficiency
+23:25:04 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\
+23:25:04 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+23:25:04 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+23:25:05 [INFO]  Supervisor: Gigi
+23:25:05 [INFO] 9 rows collected.
+23:25:33 [INFO] 9 Rows written to Master.
+23:25:33 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+23:25:52 [INFO]  Found 'Production Downtime' starting at row 34
+23:25:53 [INFO] 9 Downtime rows collected.
+23:25:53 [INFO] Writing production downtime to master file...
+23:25:57 [INFO] 9 production downtime rows written to Master file.
+23:25:57 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\17.10.2025.xlsx
+23:25:59 [WARN] Missing 'Yields and Efficiency' sheet.
+23:25:59 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\
+23:25:59 [INFO] Exact match found: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+23:25:59 [INFO]  Opening: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+23:26:00 [INFO]  Supervisor: Dawid
+23:26:00 [INFO] 4 rows collected.
+23:26:31 [INFO] 4 Rows written to Master.
+23:26:31 [INFO]  Opening for Production Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+23:26:44 [INFO]  Found 'Production Downtime' starting at row 29
+23:26:44 [INFO] 4 Downtime rows collected.
+23:26:44 [INFO] Writing production downtime to master file...
+23:26:48 [INFO] 4 production downtime rows written to Master file.
+23:26:48 [INFO] Opening for Breakdown Downtime: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\17.10.2025.xlsx
+23:26:49 [WARN] Missing 'Yields and Efficiency' sheet.
+23:26:49 [INFO] Folder: \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 4\2025\October\
+23:26:49 [WARN] GetLatestFile: Folder does not exist - \\Oak-w2k22-dc01\Department\Supervisor\Night Shift Yield & Efficiency\Line 4\2025\October\
+23:26:49 [WARN]  No valid Excel file found for Line 4
+23:26:49 [INFO] Import complete.
+23:26:49 [INFO] Log session closed.

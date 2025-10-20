@@ -1,0 +1,19 @@
+21:58:31 [INFO] Log session started at 20/10/2025 21:58:31
+21:58:31 [INFO] === Supervisor Import Started ===
+21:58:31 [INFO] Using static configuration values
+21:58:31 [INFO] Processing shift: Day Shift Yield & Efficiency
+21:58:31 [INFO] Folder: X:\Supervisor\Day Shift Yield & Efficiency\Line 1\2025\October\
+21:58:31 [WARN]  No valid Excel file found for Line 1
+21:58:31 [INFO] Folder: X:\Supervisor\Day Shift Yield & Efficiency\Line 2 & 3\2025\October\
+21:58:31 [WARN]  No valid Excel file found for Line 2 & 3
+21:58:31 [INFO] Folder: X:\Supervisor\Day Shift Yield & Efficiency\Line 4\2025\October\
+21:58:31 [WARN]  No valid Excel file found for Line 4
+21:58:31 [INFO] Processing shift: Night Shift Yield & Efficiency
+21:58:31 [INFO] Folder: X:\Supervisor\Night Shift Yield & Efficiency\Line 1\2025\October\
+21:58:31 [WARN]  No valid Excel file found for Line 1
+21:58:31 [INFO] Folder: X:\Supervisor\Night Shift Yield & Efficiency\Line 2 & 3\2025\October\
+21:58:31 [WARN]  No valid Excel file found for Line 2 & 3
+21:58:31 [INFO] Folder: X:\Supervisor\Night Shift Yield & Efficiency\Line 4\2025\October\
+21:58:31 [WARN]  No valid Excel file found for Line 4
+21:58:31 [INFO] Import complete.
+21:58:31 [INFO] Log session closed.
